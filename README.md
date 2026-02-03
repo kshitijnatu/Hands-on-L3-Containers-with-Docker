@@ -80,16 +80,6 @@ docker compose down
 
 ---
 
-## How it works (key details)
-- The Flask app uses the Redis hostname `redis`:
-  - In `app.py`, the client is created as `redis.Redis(host='redis', port=6379)`.
-  - This works because Docker Compose creates a network where service names become DNS names.
-- The hit counter is stored in Redis as the key `hits`.
-- On each request to `/`, the app calls `INCR hits` via the Redis Python client.
-- The `get_hit_count()` function retries Redis connection up to 5 times to handle Redis not being ready immediately at startup.
-
----
-
 ## What I learned in this hands-on
 - **Containerizing a Python/Flask app** using a `Dockerfile`:
   - Installing Python deps from `requirements.txt`,
@@ -97,7 +87,6 @@ docker compose down
 - **Multi-container orchestration with Docker Compose**:
   - Defining multiple services (`web`, `redis`),
   - Pulling an official image (`redis:alpine`) and building a local image (`web`),
-  - Understanding `depends_on` (startup ordering, not readiness).
 - **Service-to-service networking in Compose**:
   - Using the Compose service name (`redis`) as the hostname from the `web` container.
 - **Port mapping**:
