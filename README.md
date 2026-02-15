@@ -94,4 +94,9 @@ docker compose down
 - **Basic state management**:
   - The counter persists as long as the Redis container (and its data in-memory) remains running.
   - Removing the Redis container resets the counter unless a volume is configured.
+
 ---
+
+## Screenshot of output
+
+![Screenshot of Flask + Redis counter](image.png)
